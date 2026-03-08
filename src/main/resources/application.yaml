@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: home-api-gateway
+  cloud:
+    gateway:
+      server:
+        # This is for spring-cloud-starter-gateway-server-webmvc
+#        webmvc:
+#          routes:
+#            - id: home-email-service
+#              uri: https://hdash.alok.world
+#              predicates:
+#                - Path=/email/**
+#              filters:
+#    #            - StripPrefix=1
+#                - PrefixPath=/home
+#                - AddResponseHeader=X-Powered-By,Spring Clod Gateway
+        # This is for spring-cloud-starter-gateway-server-webflux
+        webflux:
+          routes:
+            - id: home-email-service
+              uri: https://hdash.alok.world
+              predicates:
+                - Path=/email/**
+              filters:
+                #            - StripPrefix=1
+                - PrefixPath=/home
+                - AddResponseHeader=X-Powered-By,Spring Clod Gateway for Email Service
+            - id: home-api-service
+              uri: https://hdash.alok.world
+              predicates:
+                - Path=/api/**
+              filters:
+                #            - StripPrefix=1
+                - PrefixPath=/home
+                - AddResponseHeader=X-Powered-By,Spring Clod Gateway for API Service
+
+springdoc:
+  api-docs:
+    enabled: true
+  #    path: /api-docs
+  enable-javadoc: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - name: Home Email Service API
+        url: https://hdash.alok.world/home/email/v3/api-docs.yaml
+
+      - name: Home API Service API
+        url: https://hdash.alok.world/home/api/v3/api-docs.yaml
+
+debug: true
