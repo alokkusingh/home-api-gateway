@@ -53,9 +53,9 @@ springdoc:
     config-url: /v3/api-docs/swagger-config
     urls:
       - name: Home Email Service API
-        url: https://hdash.alok.world/home/email/v3/api-docs.yaml
+        url: /email/v3/api-docs.yaml
 
       - name: Home API Service API
-        url: https://hdash.alok.world/home/api/v3/api-docs.yaml
+        url: /api/v3/api-docs.yaml
 
 debug: true
