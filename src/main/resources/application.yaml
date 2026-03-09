@@ -1,6 +1,10 @@
 spring:
   application:
     name: home-api-gateway
+
+  main:
+    web-application-type: reactive
+
   cloud:
     gateway:
       server:
@@ -26,6 +30,8 @@ spring:
                 #            - StripPrefix=1
                 - PrefixPath=/home
                 - AddResponseHeader=X-Powered-By,Spring Clod Gateway for Email Service
+                - GlobalCustomFilter
+
             - id: home-api-service
               uri: https://hdash.alok.world
               predicates:
@@ -34,6 +40,7 @@ spring:
                 #            - StripPrefix=1
                 - PrefixPath=/home
                 - AddResponseHeader=X-Powered-By,Spring Clod Gateway for API Service
+                - GlobalCustomFilter
 
 springdoc:
   api-docs:
